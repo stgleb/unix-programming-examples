@@ -21,7 +21,7 @@ void prepare(void) {
 void parent(void) {
     int err;
 
-    printf("parent unlocking locs...\n");
+    printf("parent unlocking locks...\n");
     if((err = pthread_mutex_unlock(&lock1)) != 0) {
         printf("can't unlock lock1 in parent handler %d", err);
     }
@@ -34,7 +34,7 @@ void parent(void) {
 void child(void) {
     int err;
 
-    printf("child unlocking locs...\n");
+    printf("child unlocking locks...\n");
     if((err = pthread_mutex_unlock(&lock1)) != 0) {
         printf("can't unlock lock1 in child handler %d", err);
     }
@@ -69,9 +69,9 @@ int main(void) {
     if((pid == fork()) < 0) {
         printf("fork failed %d", err);
     } else if(pid == 0) {
-        printf("child returned from fork");
+        printf("child returned from fork\n");
     } else {
-        printf("parent returned from fork");
+        printf("parent returned from fork\n");
     }
 
     exit(0);
